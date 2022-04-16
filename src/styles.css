@@ -2,3 +2,10 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css");
+
+body{
+    background-image: url('../src/assets/images/nubelson-fernandes--Xqckh_XVU4-unsplash.jpeg');
+    /* background-size:auto; */
+    background-repeat: no-repeat;
+    height: 100vh;
+}
