@@ -1,0 +1,12 @@
+input{
+    border: transparent;
+    border-bottom: 2px solid #00395d;
+    margin-top: 20px;
+    background-color: #00395d37;
+    /* color: #00395d; */
+    /* box-shadow: 0px 5px 30px rgba(255, 255, 255, 0.8); */
+}
+button{
+    color: aliceblue;
+    background-color: #00395d;
+}

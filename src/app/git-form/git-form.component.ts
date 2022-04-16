@@ -19,4 +19,20 @@ export class GitFormComponent implements OnInit {
     // this.searchName = "";
   }
 
+  // async function searchUser(event: React.FormEvent<HTMLFormElement>) {
+  //   event.preventDefault()
+  //   if (username !== '') {
+  //     try {
+  //       const { data } = await api.get(`${username}`).then()
+
+  //       dispatch({ type: 'UPDATE_USER', payload: data })
+  //       history.push('/user')
+  //     } catch (error) {
+  //       setUsername('')
+  //       alert('Erro ao encontrar usuário!')
+  //     }
+  //   }
+  //   return
+  // }
+
 }
