@@ -1,38 +1,66 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { User } from '../user/user';
+import { Repository } from '../repo/repository';
 
-@Component({
-  selector: 'app-git-form',
-  templateUrl: './git-form.component.html',
-  styleUrls: ['./git-form.component.css']
-})
-export class GitFormComponent implements OnInit {
 
-  // searchName:string;
-  @Output() searchOutput = new EventEmitter<any>()
+  @Component({
+    selector: 'app-git-form',
+    templateUrl: './git-form.component.html',
+    styleUrls: ['./git-form.component.css']
+  })
+  export class GitFormComponent implements OnInit {
 
-  constructor() { }
+  user!:User;
+  repos:any[];
+  username: string;
+  logo:string;
+  myLogo:string;
 
-  ngOnInit(): void {
+  constructor(private http:HttpClient) { 
+    // console.log('it is ready')
+    this.logo= 'assets/images/github-logo.png';
+    this.myLogo='assets/images/user-search.png';
+
+    this.username = 'Vonmak';
+
+    this.getProfileInfo().subscribe((user:any)=>{
+      this.user=user
+    });
+
+    this.getProfileRepos().subscribe((repos:any) => {
+      this.repos = repos;
+    });
   }
-  search(){
-    // this.searchOutput.emit(this.searchName);
-    // this.searchName = "";
+
+  getProfileInfo(){
+    interface ApiResponse{
+      login:string;
+    }
+    return this.http.get('https://api.github.com/users/' + this.username)
   }
 
-  // async function searchUser(event: React.FormEvent<HTMLFormElement>) {
-  //   event.preventDefault()
-  //   if (username !== '') {
-  //     try {
-  //       const { data } = await api.get(`${username}`).then()
+  getProfileRepos(){
+    return this.http.get('https://api.github.com/users/' + this.username + '/repos')
+  }
 
-  //       dispatch({ type: 'UPDATE_USER', payload: data })
-  //       history.push('/user')
-  //     } catch (error) {
-  //       setUsername('')
-  //       alert('Erro ao encontrar usuário!')
-  //     }
-  //   }
-  //   return
-  // }
+  updateProfile(username: string) {
+    this.username = username;
+  }
 
+   findProfile() {
+    this.updateProfile(this.username);
+
+    this.getProfileInfo().subscribe((user:any) => {
+      this.user = user;
+    });
+
+    this.getProfileRepos().subscribe((repos:any) => {
+      this.repos = repos;
+    });
+  }
+    ngOnInit(): void {
+      
+    }
+  
 }
