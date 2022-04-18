@@ -1,20 +1,62 @@
-<div class="container">
+<div class="container-fluid">
+  <form>
+    <a href="https://github.com/"
+      ><img src="{{ logo }}" alt="logo" class="git"
+    /></a>
+    <input
+      class="form-control form-control-sm mr-3 w-75"
+      type="text"
+      placeholder="Enter Github Username...."
+      name="username"
+      [(ngModel)]="username"
+      (keyup.Enter)="findProfile()"
+    />
+    <img src="{{ myLogo }}" alt="logo" class="logo" />
+  </form>
   <div class="row">
-    <div class="col-sm-1"></div>
-    <div class="col-sm-10">
-      <form class="form-inline active-cyan-4">
-        <input
-          class="form-control form-control-sm mr-3 w-75"
-          type="text"
-          placeholder="Enter Github Username...."
-          name="username"
-        />
-        <button class="btn btn-sm" (click)="search()">
-          <i class="bi bi-search" aria-hidden="true"></i> Search
+    <div class="col-sm-3 one">
+      <div *ngIf="user">
+        <h4>{{ user.name }}</h4>
+        <hr />
+        <img src="{{ user.avatar_url }}" alt="profile image" />
+        <hr />
+        <h5>{{ user.login }}</h5>
+        <hr />
+        <p>
+          Repos: <span>{{ user.public_repos }}</span>
+        </p>
+        <br />
+        <p>
+          Followers:<span>{{ user.followers }}</span>
+        </p>
+        <br />
+        <p>
+          Following:<span>{{ user.following }}</span>
+        </p>
+        <hr />
+        <button>
+          <a href="{{ user.html_url }}"><i class="bi bi-github"></i>Profile</a>
         </button>
-      </form>
+        <hr />
+      </div>
     </div>
-    <div class="col-sm-1"></div>
+
+    <div class="col-lg-8 two">
+      <h2>Repositories</h2>
+      <div class="container repo" *ngFor="let repo of repos">
+        <h4>{{ repo.name }}</h4>
+        <hr />
+        <p>{{ repo.description }}</p>
+
+        <small>
+          <p>Created on:{{ repo.created_at }}</p>
+          Language:<em>{{ repo.language }}</em>
+        </small>
+        <br />
+        <button>
+          <a href="{{ repo.html_url }}">Repo<i class="bi bi-github"></i></a>
+        </button>
+      </div>
+    </div>
   </div>
 </div>
-<!-- [(ngModel)]="searchName" -->
