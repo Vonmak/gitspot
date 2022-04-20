@@ -8,12 +8,13 @@ import { GitFormComponent } from './git-form/git-form.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
-  // {path: 'gitspot', component: GitspotComponent},
+ 
+  { path: '', redirectTo:"/git-form", pathMatch:"full"},//redirects to goals when user enters an empty path
   {path:'git-form', component:GitFormComponent},
   {path: 'about', component: AboutComponent},
+  { path:'**', component: GitFormComponent},
 
-  { path: '', redirectTo:"/git-form", pathMatch:"full"},//redirects to goals when user enters an empty path
-  { path:'**', component: NotFoundComponent},//for error 404
+  // { path:'**', component: NotFoundComponent},//for error 404
   
 ];
 
