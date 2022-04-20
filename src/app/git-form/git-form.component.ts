@@ -2,6 +2,8 @@ import { Component, OnInit, } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../user/user';
 import { Repository } from '../repo/repository';
+import { RepoService } from '../services/repo/repo.service';
+import { UserService } from '../services/user/user.service';
 
 
   @Component({
@@ -17,45 +19,31 @@ import { Repository } from '../repo/repository';
   logo:string;
   myLogo:string;
 
-  constructor(private http:HttpClient) { 
+  constructor(private http:HttpClient, private userService:UserService, private repoService:RepoService) { 
     // console.log('it is ready')
     this.logo= 'assets/images/github-logo.png';
     this.myLogo='assets/images/user-search.png';
 
     this.username = 'Vonmak';
 
-    this.getProfileInfo().subscribe((user:any)=>{
+    this.userService.getProfileInfo().subscribe((user:any)=>{
       this.user=user
     });
 
-    this.getProfileRepos().subscribe((repos:any) => {
+    this.repoService.getProfileRepos().subscribe((repos:any) => {
       this.repos = repos;
     });
   }
 
-  getProfileInfo(){
-    interface ApiResponse{
-      login:string;
-    }
-    return this.http.get('https://api.github.com/users/' + this.username)
-  }
-
-  getProfileRepos(){
-    return this.http.get('https://api.github.com/users/' + this.username + '/repos')
-  }
-
-  updateProfile(username: string) {
-    this.username = username;
-  }
-
    findProfile() {
-    this.updateProfile(this.username);
+    this.userService.updateProfile(this.username);
+    this.repoService.updateProfile(this.username);
 
-    this.getProfileInfo().subscribe((user:any) => {
+    this.userService.getProfileInfo().subscribe((user:any) => {
       this.user = user;
     });
 
-    this.getProfileRepos().subscribe((repos:any) => {
+    this.repoService.getProfileRepos().subscribe((repos:any) => {
       this.repos = repos;
     });
   }
