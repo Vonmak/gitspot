@@ -4,6 +4,9 @@
     justify-content: space-between;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    background: -webkit-linear-gradient(#ffffff, #00aeef);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 .collapse{
     display: flex;
