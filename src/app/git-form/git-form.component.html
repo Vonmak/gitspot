@@ -9,13 +9,14 @@
       placeholder="Enter Github Username...."
       name="username"
       [(ngModel)]="username"
-      (keyup.Enter)="findProfile()"
+      (keyup)="findProfile()"
+      appHover
     />
-    <img src="{{ myLogo }}" alt="logo" class="logo" />
+    <img appHover src="{{ myLogo }}" alt="logo" class="logo" />
   </form>
   <div class="row">
     <div class="col-sm-3 one">
-      <div *ngIf="user">
+      <div class="profile" *ngIf="user">
         <h4>{{ user.name }}</h4>
         <hr />
         <img src="{{ user.avatar_url }}" alt="profile image" />
@@ -43,13 +44,14 @@
 
     <div class="col-lg-8 two">
       <h2>Repositories</h2>
-      <div class="container repo" *ngFor="let repo of repos">
+      <div appHover class="container repo" *ngFor="let repo of repos">
         <h4>{{ repo.name }}</h4>
         <hr />
         <p>{{ repo.description }}</p>
 
         <small>
-          <p>Created on:{{ repo.created_at }}</p>
+          <p>Created on:{{ repo.created_at | date }}</p>
+          <!-- <p>It was created{{ repo.created_at | days }} days ago.</p> -->
           Language:<em>{{ repo.language }}</em>
         </small>
         <br />

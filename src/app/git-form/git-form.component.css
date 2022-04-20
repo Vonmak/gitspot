@@ -41,7 +41,7 @@ input{
 
 }
 span{
-    background-color: #00aeef;
+    background: linear-gradient(#00aeef,#00395d);
     margin: 4px;
     border-radius: 50px;
     padding: 10px;
@@ -52,6 +52,9 @@ span{
     text-align: center;
     margin: 10px;
 }
+.profile h4{
+    background: linear-gradient(#00395d,#380138, #78595e);
+}
 .two{
     display: flex;
     flex-direction: column;
@@ -60,7 +63,7 @@ span{
     overflow: scroll;
 }
 .two h2{
-    background-color: #00395d;
+    background: linear-gradient(#00395d,#00aeef,#00395d);
     width: 250px;
     height: 50px;
     border-radius: 50px; 
@@ -82,7 +85,7 @@ span{
 }
 
 small p{
-    background-color: #00aeef;
+    background: linear-gradient(#00aeef,#00395d);
     text-align: center;
 }
 button{
@@ -90,12 +93,12 @@ button{
     margin-top: 10px;
     width: 80px;
     height: 30px;
-    background-color: #fff;
+    background: linear-gradient(#00395d,#fff);
 }
 img{
     width: 90%;
     height: 200px;
-    border-radius: 100px;
+    border-radius: 100%;
 }
 a{
     text-decoration: none;
